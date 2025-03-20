@@ -1,0 +1,133 @@
+/* Page Background */
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0f121a;
+}
+
+/* Main Box */
+.transfer-box {
+    width: 420px;
+    background: #161b26;
+    padding: 25px;
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Toggle Buttons */
+.tab-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.tab-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background: #1f2533;
+    transition: 0.3s;
+    border-radius: 6px;
+}
+
+.tab-buttons button.active {
+    background: #4c6ef5;
+}
+
+/* File Upload Box */
+.file-upload {
+    background: #202636;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px dashed #4c6ef5;
+}
+
+.file-upload p {
+    margin: 10px 0 5px;
+    font-size: 16px;
+}
+
+.file-upload span {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Labels */
+label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #d1d5db;
+}
+
+/* Input Fields */
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #1f2533;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+/* Footer Section */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.footer span {
+    font-size: 12px;
+    color: #d1d5db;
+}
+
+.password-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.password-option svg {
+    margin-right: 5px;
+}
+
+/* Transfer Button */
+.transfer-btn {
+    padding: 10px 15px;
+    font-size: 14px;
+    background: #4c6ef5;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.transfer-btn svg {
+    margin-left: 5px;
+}
+
+.transfer-btn:hover {
+    background: #4058d1;
+}
