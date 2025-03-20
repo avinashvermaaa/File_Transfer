@@ -1,19 +1,12 @@
-import React, { useState } from "react";
-import {
-  Upload,
-  Lock,
-  Send,
-  Link,
-  Eye,
-  X,
-  Paperclip,
-  Plus,
-} from "lucide-react";
+import React, { useState, useRef } from "react";
+import { Upload, Lock, Send, Link, Eye, X, Paperclip, Plus, } from "lucide-react";
 import "./Home.css";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("email");
   const [files, setFiles] = useState([]);
+  const [previewFile, setPreviewFile] = useState(null);
+  const fileInputRef = useRef(null); // ✅ Create a ref for the file input
 
   const handleFileUpload = (event) => {
     const uploadedFiles = Array.from(event.target.files);
@@ -26,9 +19,19 @@ const Home = () => {
 
   const getTotalSize = () => {
     const totalSize = files.reduce((acc, file) => acc + file.size, 0);
-    return totalSize >= 1048576
+    return totalSize > 1024 * 1024
       ? (totalSize / 1048576).toFixed(2) + " MB" // Convert bytes to MB if >= 1MB
       : (totalSize / 1024).toFixed(2) + " KB"; // Convert bytes to KB otherwise
+  };
+
+  const handlePreview = (file) => {
+    if (file.type.startsWith("image/")) {
+      setPreviewFile(URL.createObjectURL(file));
+    } else if (file.type === "application/pdf") {
+      setPreviewFile(URL.createObjectURL(file));
+    } else {
+      alert("Preview not available for this file type.");
+    }
   };
 
   return (
@@ -54,20 +57,22 @@ const Home = () => {
         {files.length === 0 && (
           <div
             className="file-upload"
-            onClick={() => document.getElementById("fileInput").click()}
+            onClick={() => fileInputRef.current.click()}
           >
             <Upload size={24} />
             <p>Add files</p>
             <span>Or select a folder</span>
-            <input
-              type="file"
-              id="fileInput"
-              multiple
-              hidden
-              onChange={handleFileUpload}
-            />
           </div>
         )}
+
+        {/* Hidden File Input */}
+        <input
+          type="file"
+          ref={fileInputRef} // ✅ Used the ref instead of document.getElementById
+          multiple
+          hidden
+          onChange={handleFileUpload}
+        />
 
         {/* File List */}
         {files.length > 0 && (
@@ -78,7 +83,7 @@ const Home = () => {
               </span>
               <button
                 className="add-more-btn"
-                onClick={() => document.getElementById("fileInput").click()}
+                onClick={() => fileInputRef.current.click()} // ✅ Used ref to trigger click
               >
                 <Plus size={14} /> Add more
               </button>
@@ -93,7 +98,11 @@ const Home = () => {
                       : file.name}
                   </span>
                   <div className="file-actions">
-                    <Eye size={16} className="view-icon" />
+                    <Eye
+                      size={16}
+                      className="view-icon"
+                      onClick={() => handlePreview(file)}
+                    />
                     <X
                       size={16}
                       className="remove-icon"
@@ -139,6 +148,24 @@ const Home = () => {
           )}
         </div>
       </div>
+
+      {/* File Preview Modal */}
+      {previewFile && (
+        <div className="preview-modal" onClick={() => setPreviewFile(null)}>
+          <div className="preview-content">
+            <X
+              size={24}
+              className="close-preview"
+              onClick={() => setPreviewFile(null)}
+            />
+            {previewFile.endsWith(".pdf") ? (
+              <iframe src={previewFile} title="PDF Preview"></iframe>
+            ) : (
+              <img src={previewFile} alt="Preview" />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
