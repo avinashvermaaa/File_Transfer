@@ -7,6 +7,7 @@ const Home = () => {
   const [files, setFiles] = useState([]);
   const [previewFile, setPreviewFile] = useState(null);
   const fileInputRef = useRef(null); // ✅ Create a ref for the file input
+  const [previewType, setPreviewType] = useState(""); // Track file type
 
   const handleFileUpload = (event) => {
     const uploadedFiles = Array.from(event.target.files);
@@ -25,13 +26,18 @@ const Home = () => {
   };
 
   const handlePreview = (file) => {
+    const fileURL = URL.createObjectURL(file);
     if (file.type.startsWith("image/")) {
-      setPreviewFile(URL.createObjectURL(file));
+      setPreviewType("image");
     } else if (file.type === "application/pdf") {
-      setPreviewFile(URL.createObjectURL(file));
+      setPreviewType("pdf");
+    } else if (file.type.startsWith("video/")) {
+      setPreviewType("video");
     } else {
       alert("Preview not available for this file type.");
+      return;
     }
+    setPreviewFile(fileURL);
   };
 
   return (
@@ -68,7 +74,7 @@ const Home = () => {
         {/* Hidden File Input */}
         <input
           type="file"
-          ref={fileInputRef} // ✅ Used the ref instead of document.getElementById
+          ref={fileInputRef}
           multiple
           hidden
           onChange={handleFileUpload}
@@ -83,7 +89,7 @@ const Home = () => {
               </span>
               <button
                 className="add-more-btn"
-                onClick={() => fileInputRef.current.click()} // ✅ Used ref to trigger click
+                onClick={() => fileInputRef.current.click()}
               >
                 <Plus size={14} /> Add more
               </button>
@@ -158,10 +164,15 @@ const Home = () => {
               className="close-preview"
               onClick={() => setPreviewFile(null)}
             />
-            {previewFile.endsWith(".pdf") ? (
+            {previewType === "image" && <img src={previewFile} alt="Preview" />}
+            {previewType === "pdf" && (
               <iframe src={previewFile} title="PDF Preview"></iframe>
-            ) : (
-              <img src={previewFile} alt="Preview" />
+            )}
+            {previewType === "video" && (
+              <video controls>
+                <source src={previewFile} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             )}
           </div>
         </div>
