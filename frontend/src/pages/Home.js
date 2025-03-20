@@ -26,7 +26,7 @@ const Home = () => {
 
         {/* File Upload Section */}
         <div className="file-upload">
-          <Upload size={28} />
+          <Upload size={24} />
           <p>Add files</p>
           <span>Or select a folder</span>
         </div>

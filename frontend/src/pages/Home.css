@@ -12,7 +12,6 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
     background-color: #0f121a;
 }
 
@@ -20,7 +19,7 @@ html {
 .transfer-box {
     width: 520px;
     background: #161b26;
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
     color: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -31,15 +30,15 @@ html {
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .tab-buttons button {
     flex: 1;
-    padding: 15px;
+    padding: 10px;
     border: none;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: white;
     background: #1f2533;
@@ -54,7 +53,8 @@ html {
 /* File Upload Box */
 .file-upload {
     background: #202636;
-    padding: 20px;
+    padding: 5px;
+    cursor: pointer;
     text-align: center;
     border-radius: 8px;
     margin-bottom: 15px;
@@ -63,11 +63,11 @@ html {
 
 .file-upload p {
     margin: 10px 0 5px;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .file-upload span {
-    font-size: 20px;
+    font-size: 16px;
     color: #888;
 }
 
@@ -75,7 +75,7 @@ html {
 label {
     display: block;
     text-align: left;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 5px;
     color: #d1d5db;
 }
@@ -84,7 +84,7 @@ label {
 input,
 textarea {
     width: 95%;
-    padding: 12px;
+    padding: 10px;
     margin-bottom: 10px;
     border: none;
     border-radius: 6px;
@@ -96,7 +96,7 @@ textarea {
 
 textarea {
     resize: none;
-    height: 80px;
+    height: 50px;
 }
 
 /* Footer Section */
