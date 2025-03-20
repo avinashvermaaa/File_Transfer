@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Upload, Lock, Send, Link, Eye, X, Paperclip, Plus, } from "lucide-react";
+import {
+  Upload,
+  Lock,
+  Send,
+  Link,
+  Eye,
+  X,
+  Paperclip,
+  Plus,
+} from "lucide-react";
 import "./Home.css";
 
 const Home = () => {
@@ -17,7 +26,9 @@ const Home = () => {
 
   const getTotalSize = () => {
     const totalSize = files.reduce((acc, file) => acc + file.size, 0);
-    return (totalSize / 1024).toFixed(2) + " KB"; // Convert bytes to KB
+    return totalSize >= 1048576
+      ? (totalSize / 1048576).toFixed(2) + " MB" // Convert bytes to MB if >= 1MB
+      : (totalSize / 1024).toFixed(2) + " KB"; // Convert bytes to KB otherwise
   };
 
   return (
@@ -39,35 +50,39 @@ const Home = () => {
           </button>
         </div>
 
-        {/* File Upload Section */}
-        <div
-          className="file-upload"
-          onClick={() => document.getElementById("fileInput").click()}
-        >
-          <Upload size={24} />
-          <p>Add files</p>
-          <span>Or select a folder</span>
-          <input
-            type="file"
-            id="fileInput"
-            multiple
-            hidden
-            onChange={handleFileUpload}
-          />
-        </div>
+        {/* File Upload Section - Hide when files exist */}
+        {files.length === 0 && (
+          <div
+            className="file-upload"
+            onClick={() => document.getElementById("fileInput").click()}
+          >
+            <Upload size={24} />
+            <p>Add files</p>
+            <span>Or select a folder</span>
+            <input
+              type="file"
+              id="fileInput"
+              multiple
+              hidden
+              onChange={handleFileUpload}
+            />
+          </div>
+        )}
 
         {/* File List */}
         {files.length > 0 && (
           <div className="file-list">
-            <span>
-              {files.length} files • {getTotalSize()}
-            </span>
-            <button
-              className="add-more-btn"
-              onClick={() => document.getElementById("fileInput").click()}
-            >
-              <Plus size={14} /> Add more
-            </button>
+            <div className="file-header">
+              <span>
+                {files.length} files • {getTotalSize()}
+              </span>
+              <button
+                className="add-more-btn"
+                onClick={() => document.getElementById("fileInput").click()}
+              >
+                <Plus size={14} /> Add more
+              </button>
+            </div>
             <div className="file-items">
               {files.map((file, index) => (
                 <div key={index} className="file-item">

@@ -4,7 +4,6 @@ html {
     margin: 0;
     padding: 0;
     background-color: #0d1117;
-    /* Match the background color */
 }
 
 /* Page Background */
@@ -12,7 +11,9 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0f121a;
+    min-height: 100vh;
+    /* background-color: #0f121a; */
+    padding: 20px;
 }
 
 /* Main Box */
@@ -22,7 +23,7 @@ html {
     padding: 20px;
     border-radius: 12px;
     color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 10px #007bff;
 }
 
 /* Toggle Buttons */
@@ -30,15 +31,15 @@ html {
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .tab-buttons button {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: none;
     cursor: pointer;
-    font-size: 26px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
     background: #1f2533;
@@ -53,7 +54,7 @@ html {
 /* File Upload Box */
 .file-upload {
     background: #202636;
-    padding: 5px;
+    padding: 15px;
     cursor: pointer;
     text-align: center;
     border-radius: 8px;
@@ -63,11 +64,11 @@ html {
 
 .file-upload p {
     margin: 10px 0 5px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .file-upload span {
-    font-size: 16px;
+    font-size: 14px;
     color: #888;
 }
 
@@ -75,7 +76,7 @@ html {
 label {
     display: block;
     text-align: left;
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 5px;
     color: #d1d5db;
 }
@@ -90,13 +91,11 @@ textarea {
     border-radius: 6px;
     background: #1f2533;
     color: white;
-    /* font-size: 16px; */
-    /* outline: none; */
 }
 
 textarea {
     resize: none;
-    height: 50px;
+    height: 60px;
 }
 
 /* Footer Section */
@@ -108,7 +107,7 @@ textarea {
 }
 
 .footer span {
-    font-size: 20px;
+    font-size: 16px;
     color: #d1d5db;
 }
 
@@ -133,6 +132,7 @@ textarea {
     color: white;
     display: flex;
     align-items: center;
+    transition: background 0.3s;
 }
 
 .transfer-btn svg {
@@ -143,6 +143,7 @@ textarea {
     background: #4058d1;
 }
 
+/* File List Section */
 .file-list {
     display: flex;
     flex-direction: column;
@@ -151,11 +152,21 @@ textarea {
     border-radius: 8px;
 }
 
+.file-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    padding: 8px 10px;
+    background: #1a1a1a;
+    border-radius: 8px 8px 0 0;
+}
+
 .file-items {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-height: 150px;
+    max-height: 200px;
     overflow-y: auto;
 }
 
@@ -182,19 +193,22 @@ textarea {
 .file-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .view-icon,
 .remove-icon {
     cursor: pointer;
     color: #bbb;
+    transition: color 0.3s;
 }
 
 .view-icon:hover,
 .remove-icon:hover {
     color: white;
 }
+
+/* Add More Button */
 .add-more-btn {
     background: #3b82f6;
     color: white;
@@ -206,18 +220,34 @@ textarea {
     display: flex;
     align-items: center;
     gap: 5px;
+    transition: background 0.3s;
 }
 
 .add-more-btn:hover {
     background: #2563eb;
 }
 
-.file-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    padding: 8px 10px;
-    background: #1a1a1a;
-    border-radius: 8px 8px 0 0;
+/* Responsive Design */
+@media (max-width: 600px) {
+    .transfer-box {
+        width: 90%;
+    }
+
+    .tab-buttons button {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .file-item {
+        padding: 6px 10px;
+    }
+
+    .file-name {
+        font-size: 12px;
+    }
+
+    .transfer-btn {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
 }
