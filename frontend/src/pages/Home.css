@@ -18,7 +18,7 @@ html {
 
 /* Main Box */
 .transfer-box {
-    width: 444px;
+    width: 520px;
     background: #161b26;
     padding: 25px;
     border-radius: 12px;
@@ -30,15 +30,16 @@ html {
 .tab-buttons {
     display: flex;
     justify-content: space-between;
+    gap: 15px;
     margin-bottom: 15px;
 }
 
 .tab-buttons button {
     flex: 1;
-    padding: 10px;
+    padding: 15px;
     border: none;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     color: white;
     background: #1f2533;
@@ -62,18 +63,19 @@ html {
 
 .file-upload p {
     margin: 10px 0 5px;
-    font-size: 18px;
+    font-size: 24px;
 }
 
 .file-upload span {
-    font-size: 16px;
+    font-size: 20px;
     color: #888;
 }
 
 /* Labels */
 label {
     display: block;
-    font-size: 16px;
+    text-align: left;
+    font-size: 20px;
     margin-bottom: 5px;
     color: #d1d5db;
 }
@@ -106,7 +108,7 @@ textarea {
 }
 
 .footer span {
-    font-size: 16px;
+    font-size: 20px;
     color: #d1d5db;
 }
 
