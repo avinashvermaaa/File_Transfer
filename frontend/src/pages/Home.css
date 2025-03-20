@@ -142,3 +142,82 @@ textarea {
 .transfer-btn:hover {
     background: #4058d1;
 }
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+    background: #1a1a1a;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.file-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #282828;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.file-icon {
+    margin-right: 10px;
+    color: #bbb;
+}
+
+.file-name {
+    flex: 1;
+    color: white;
+    font-size: 14px;
+}
+
+.file-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.view-icon,
+.remove-icon {
+    cursor: pointer;
+    color: #bbb;
+}
+
+.view-icon:hover,
+.remove-icon:hover {
+    color: white;
+}
+.add-more-btn {
+    background: #3b82f6;
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.add-more-btn:hover {
+    background: #2563eb;
+}
+
+.file-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    padding: 8px 10px;
+    background: #1a1a1a;
+    border-radius: 8px 8px 0 0;
+}
