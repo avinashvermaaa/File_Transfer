@@ -1,15 +1,24 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0d1117;
+    /* Match the background color */
+}
+
 /* Page Background */
 .home-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: #0f121a;
 }
 
 /* Main Box */
 .transfer-box {
-    width: 420px;
+    width: 444px;
     background: #161b26;
     padding: 25px;
     border-radius: 12px;
@@ -29,7 +38,7 @@
     padding: 10px;
     border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
     background: #1f2533;
@@ -53,18 +62,18 @@
 
 .file-upload p {
     margin: 10px 0 5px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .file-upload span {
-    font-size: 12px;
+    font-size: 16px;
     color: #888;
 }
 
 /* Labels */
 label {
     display: block;
-    font-size: 13px;
+    font-size: 16px;
     margin-bottom: 5px;
     color: #d1d5db;
 }
@@ -72,15 +81,15 @@ label {
 /* Input Fields */
 input,
 textarea {
-    width: 100%;
+    width: 95%;
     padding: 12px;
     margin-bottom: 10px;
     border: none;
     border-radius: 6px;
     background: #1f2533;
     color: white;
-    font-size: 14px;
-    outline: none;
+    /* font-size: 16px; */
+    /* outline: none; */
 }
 
 textarea {
@@ -97,7 +106,7 @@ textarea {
 }
 
 .footer span {
-    font-size: 12px;
+    font-size: 16px;
     color: #d1d5db;
 }
 
@@ -114,7 +123,7 @@ textarea {
 /* Transfer Button */
 .transfer-btn {
     padding: 10px 15px;
-    font-size: 14px;
+    font-size: 16px;
     background: #4c6ef5;
     border: none;
     cursor: pointer;
