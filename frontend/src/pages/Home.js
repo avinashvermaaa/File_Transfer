@@ -1,13 +1,16 @@
 import React, { useState, useRef } from "react";
 import { Upload, Lock, Send, Link, Eye, X, Paperclip, Plus, } from "lucide-react";
+import axios from "axios"; // Import axios for API requests
 import "./Home.css";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("email");
   const [files, setFiles] = useState([]);
   const [previewFile, setPreviewFile] = useState(null);
-  const fileInputRef = useRef(null); // ✅ Create a ref for the file input
-  const [previewType, setPreviewType] = useState(""); // Track file type
+  const fileInputRef = useRef(null);
+  const [previewType, setPreviewType] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [generatedLink, setGeneratedLink] = useState("");
 
   const handleFileUpload = (event) => {
     const uploadedFiles = Array.from(event.target.files);
@@ -21,8 +24,8 @@ const Home = () => {
   const getTotalSize = () => {
     const totalSize = files.reduce((acc, file) => acc + file.size, 0);
     return totalSize > 1024 * 1024
-      ? (totalSize / 1048576).toFixed(2) + " MB" // Convert bytes to MB if >= 1MB
-      : (totalSize / 1024).toFixed(2) + " KB"; // Convert bytes to KB otherwise
+      ? (totalSize / 1048576).toFixed(2) + " MB"
+      : (totalSize / 1024).toFixed(2) + " KB";
   };
 
   const handlePreview = (file) => {
@@ -38,6 +41,39 @@ const Home = () => {
       return;
     }
     setPreviewFile(fileURL);
+  };
+
+  // Function to handle file upload and get link
+  const handleLinkTransfer = async () => {
+    if (files.length === 0) {
+      alert("Please upload files first!");
+      return;
+    }
+
+    setUploading(true);
+    setGeneratedLink("");
+
+    const formData = new FormData();
+    files.forEach((file) => formData.append("files", file));
+
+    try {
+      const response = await axios.post(
+        "https://share247.onrender.com/upload",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      if (response.data.shortLinks && response.data.shortLinks.length > 0) {
+        setGeneratedLink(response.data.shortLinks[0]); // Get first file's link
+      }
+    } catch (error) {
+      console.error("Error uploading files:", error);
+      alert("Failed to generate link. Please try again.");
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -137,22 +173,40 @@ const Home = () => {
         <label>Message</label>
         <textarea placeholder="Add a message (optional)"></textarea>
 
-        {/* Footer Options (Dynamic) */}
+        {/* Footer Options */}
         <div className="footer">
           <span>📅 7 days</span>
           <span className="password-option">
             <Lock size={16} /> Add password
           </span>
+
           {activeTab === "email" ? (
             <button className="transfer-btn">
               Transfer <Send size={16} />
             </button>
           ) : (
-            <button className="transfer-btn">
-              Get a link <Link size={16} />
+            <button
+              className="transfer-btn"
+              onClick={handleLinkTransfer}
+              disabled={uploading}
+            >
+              {uploading ? "Generating..." : "Get a link"} <Link size={16} />
             </button>
           )}
         </div>
+
+        {/* Display generated link */}
+        {generatedLink && (
+          <div className="generated-link">
+            <p>Share this link:</p>
+            <input type="text" value={generatedLink} readOnly />
+            <button
+              onClick={() => navigator.clipboard.writeText(generatedLink)}
+            >
+              Copy
+            </button>
+          </div>
+        )}
       </div>
 
       {/* File Preview Modal */}
