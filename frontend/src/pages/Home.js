@@ -208,7 +208,6 @@ const Home = () => {
           </div>
         )}
       </div>
-
       {/* File Preview Modal */}
       {previewFile && (
         <div className="preview-modal" onClick={() => setPreviewFile(null)}>
@@ -231,6 +230,23 @@ const Home = () => {
           </div>
         </div>
       )}
+       
+      <div className="home-container">
+        <footer className="footer-container">
+          <h3>Visitor's Count :-</h3>
+          <a
+            href="https://www.hitwebcounter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://hitwebcounter.com/counter/counter.php?page=19803650&style=0014&nbdigits=9&type=page&initCount=0"
+              title="Counter Widget"
+              alt="Visit counter For Websites"
+            />
+          </a>
+        </footer>
+      </div>
     </div>
   );
 };

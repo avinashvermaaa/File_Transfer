@@ -319,3 +319,27 @@ textarea {
     background: #4058d1;
     /* ✅ Darker shade on hover */
 }
+.footer-container {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 8px 0; /* Reduce padding */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Space between text and image */
+}
+
+.footer-container h3 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.footer-container img {
+    height: 28px; /* Reduced image size */
+    vertical-align: middle;
+}
